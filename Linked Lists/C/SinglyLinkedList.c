@@ -23,7 +23,7 @@ typedef struct node{
 
 Node_t *insertHead(Node_t **head, int val)
 {
-    Node_t *newNode = malloc(sizeof(Node_t));
+    Node_t *newNode = (Node_t*)malloc(sizeof(Node_t));
     
     if(*head == NULL) // If empty list
     {
@@ -130,7 +130,7 @@ int main()
     insertTail(&head, 10);
     insertTail(&head, 15);
     insertTail(&head, 1);
-    head = insertHead(&head, 30);
+    insertHead(&head, 30);
     insertTail(&head, 5);
     insertTail(&head, 9);
     insertTail(&head, 21);
