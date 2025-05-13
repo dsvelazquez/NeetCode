@@ -12,14 +12,27 @@ Explanation: Reversing 00000000000000000000000000010101, which represents the un
 #include <stdio.h>
 #include <stdlib.h>
 
-int reverseBits(int n)
+unsigned char reverseBits(unsigned char n)
 {
-  
+    unsigned char bit;
+    unsigned char res;
+    unsigned char count = 0;
+    
+    while(count < 8)
+    {
+        bit = n & 1; // Get the least significant bit
+        n = n >> 1; // update n. shift to the right one time
+        res |= (bit << (7 - count)); // shift to the left (MSB)
+        count++;
+    }
+    
+    return res;
+
 }
 
 int main()
 {
-    int num = 5;
+    int num = 8;
     printf("%d\r\n", reverseBits(num));
 
     return 0;

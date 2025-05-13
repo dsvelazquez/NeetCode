@@ -3,9 +3,8 @@
 
 int SetBit(int num, int pos)
 {
-    int mask = 1<< pos;
-
-    return (num | mask);
+    int mask = (1 << pos);
+    return mask | num;
 }
 
 int main()

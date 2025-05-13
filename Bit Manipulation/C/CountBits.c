@@ -4,11 +4,14 @@
 int CountBits(int num)
 {
     int count = 0;
-    while(num > 0)
+    while(num>0)
     {
-        if((num & 1)) // // check the rightmost bit. if true (1), increment the count
+        if(num & 1)
+        {
             count++;
-        num = num >> 1; // shift the next bit over to check.
+        }
+        num = num >> 1; 
+        
     }
     return count;
 
@@ -16,7 +19,7 @@ int CountBits(int num)
 
 int main()
 {
-    int num = 64;
+    int num = 17;
     printf("%d", CountBits(num));
     
     return 0;

@@ -4,13 +4,13 @@
 
 int ClearBit(int n, int pos)
 {
-    int mask = ~(1<<pos);
-    return (n & mask);
+    int mask = ~(1 << pos);// create the pattern with a mask. i.e. 000010000. Inverted: 111101111
+    return n & mask;
 }
 
 int main()
 {
-    int num = 5;
+    int num = 21;
 
     printf("%d", ClearBit(num, 2));
     
