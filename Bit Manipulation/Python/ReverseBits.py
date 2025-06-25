@@ -9,14 +9,13 @@ Output:    2818572288 (10101000000000000000000000000000)
 Explanation: Reversing 00000000000000000000000000010101, which represents the unsigned integer 21, gives us 10101000000000000000000000000000 which represents the unsigned integer 2818572288.
 
 """
-num = 5
+SIZE_NUM = 8   # number of bits 
+num = 253
 def reverseBits(n: int) -> int:
     res = 0
-    for i in range(32):
-        #Get the ith bit
-        bit = (n >> i) & 1
-        #shift the ith bit into Res
-        res += (bit << (31 - i))
+    for i in range(SIZE_NUM):
+        bit = (num >> i) & 1 #Get the ith bit
+        res += (bit << ((SIZE_NUM-1)-i))#Shift the ith bit to the MS place
     return res
 
 res = reverseBits(num)

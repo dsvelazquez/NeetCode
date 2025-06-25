@@ -4,6 +4,6 @@ def setBit(num:int, bit:int) -> int:
     num |= (1 << bit)
     return num
 
-num = setBit(num,9)
+num = setBit(num,1)
 print(f"Set Number: {num:b}")
       

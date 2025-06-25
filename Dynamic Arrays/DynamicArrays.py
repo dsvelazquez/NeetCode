@@ -6,6 +6,7 @@
 # Second add elements using pushback()
 # Third, if length == capacity, resize the array by doubling it.
 class DynamicArray:
+
     def __init__(self, initial_capacity=5): # must initialize capacity, length, and array
         self.capacity = initial_capacity
         self.length = 0
@@ -17,24 +18,72 @@ class DynamicArray:
         self.arr[self.length] = n
         self.length += 1
 
+    def popout(self):
+        if self.length == 0:
+            print("No elements to popout")
+            return
+        self.arr[self.length-1] = None
+        self.length -= 1
+
+    def removeIndex(self, index):
+        # check the bounds
+        if index < 0 or index > self.length-1:
+            print("index out of bounds")
+            return
+        
+        # from index, shift every element to the left
+        for i in range(index, self.length):
+            self.arr[i] = self.arr[i + 1]   
+        
+        self.length -= 1 # adjust the length
+        self.arr[self.length] = None # set length index to None. This takes care of the removed element
+
+    def sort_bubble(self):
+        swapped = False
+        if self.length <= 1:
+            return # Already sorted or empty
+        
+        for i in range(self.length): # loop through each number in the array
+            #The range of elements decreases by one (largest element now sorted at the end)
+            for j in range(self.length - 1 - i): 
+                if self.arr[j] > self.arr[j+1]:
+                    self.arr[j] ^= self.arr[j+1]
+                    self.arr[j+1] ^= self.arr[j]
+                    self.arr[j] ^= self.arr[j+1]
+                    swapped = True
+                    #self.arr[j], self.arr[j+1] = self.arr[j+1], self.arr[j] # Swap
+        if swapped == False: #optimization. Not needed but good if elements are sorted early on
+            return self.arr
+        
+        return self.arr
+    
     def resize(self):
         self.capacity *= 2  # Double the capacity
         new_arr = [None] * self.capacity
         # Copy elements to the new array
         for i in range(self.length):
             new_arr[i] = self.arr[i]
-        self.arr = new_arr
-
-            
+        self.arr = new_arr     
 
 
 
-# Example usage
-#arr = DynamicArray()
-#arr.pushback(2)
-#arr.pushback(4)
-#arr.pushback(5)
-#print(arr.arr)  # Output: [2, 4, 5, None, None, None, None, None, None, None]
+#Example usage
+arr = DynamicArray()
+arr.pushback(2)
+arr.pushback(4)
+arr.pushback(5)
+arr.popout()
+arr.removeIndex(1)
+arr.pushback(90)
+arr.pushback(66)
+arr.pushback(3)
+arr.pushback(1)
+arr.pushback(28)
+arr.pushback(19)
+print(arr.length)
+print(arr.arr)  # Output: [2, 4, 5, None, None, None, None, None, None, None]
+print(arr.sort_bubble())
+
 
 # Problems
 #1)
@@ -89,4 +138,4 @@ def getConcatentaion2(nums):
 
         return ans
 
-print(getConcatentaion2(nums))
+#print(getConcatentaion2(nums))

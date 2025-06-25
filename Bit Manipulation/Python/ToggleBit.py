@@ -6,7 +6,7 @@ def ToggleBit(num: int, bit:int) -> int:
     return num
 
 
-num = ToggleBit(num,1)
+num = ToggleBit(num,2)
 print(f"Toggle bit: {num:b}")
-num = ToggleBit(num,1)
+num = ToggleBit(num,2)
 print(f"Toggle bit: {num:b}")

@@ -1,5 +1,5 @@
 def countBits(n: int) -> list[int]:
-        count = [0] * (n+1)
+        count = [0] * (n+1) # initialize list
         for num in range(n+1):
             temp = num
             while temp > 0:
@@ -8,4 +8,4 @@ def countBits(n: int) -> list[int]:
                 temp = temp >> 1
         return count
 
-print(countBits(4))
+print(countBits(20))
