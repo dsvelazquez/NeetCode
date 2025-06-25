@@ -1,0 +1,21 @@
+digraph {
+	rankdir=LR size=10
+	Host [label="USB Host (PC)"]
+	Device [label="USB HID Device (MCU)"]
+	USB_Event_Handler [label=APP_USBDeviceEventHandler]
+	HID_Event_Handler [label=APP_USBDeviceHIDEventHandler]
+	App_State [label="Application Logic / State Machine"]
+	HID_Report [label="HID Report (Key, Button, etc.)"]
+	Host -> Device [label="USB Events
+(e.g., Set Config, Suspend)"]
+	Device -> USB_Event_Handler [label="Pass to handler"]
+	USB_Event_Handler -> HID_Event_Handler [label="Register HID Handler"]
+	Host -> HID_Event_Handler [label="HID Events
+(Get/Set Idle, Report)" style=dashed]
+	HID_Event_Handler -> App_State [label="Set flags
+(e.g., isReportReceived)"]
+	App_State -> HID_Report [label="Prepare report
+(data to send)"]
+	HID_Report -> HID_Event_Handler [label="Send report"]
+	HID_Event_Handler -> Host [label="Report Sent ACK" style=dashed]
+}
