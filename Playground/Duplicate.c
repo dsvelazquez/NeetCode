@@ -7,38 +7,34 @@
 typedef struct{
     int key;
     bool present;
-}HashTable;
+}HASH_TABLE;
 
-int HashFunction(int index)
+int HASH_FUNCTION(int index)
 {
     return index % TABLE_SIZE;
 }
 
-int findDuplicate( int arr[], int size)
+int findDuplicate(int *arr, int size)
 {
-    int index;
-    HashTable dupe[TABLE_SIZE];
-
+    HASH_TABLE table[TABLE_SIZE];
+    int num;
     for(int i=0;i<size;i++)
     {
-        index = HashFunction(arr[i]);
-        if(dupe[index].present != true)
+        num = HASH_FUNCTION(arr[i]);
+        if(table[num].present != true)
         {
-            dupe[index].present = true;
-            dupe[index].key = arr[i];
+            table[num].key = num;
+            table[num].present = true;
         }
-        else
-        {
-            return dupe[index].key;
-        }
-        
+        else // found duplicate
+            return num;
+            
     }
-    return -1; // Didn't find duplicate
-    
+    return -1; // no duplicate found
 }
 int main()
 {
-    int arr1[] =   {1,5,9,8,8,1};
+    int arr1[] =   {1,5,9,7,8,1};
     int size1 = sizeof(arr1)/sizeof(arr1[0]);
     int duplicate1 = findDuplicate(arr1, size1);
     if(duplicate1 == -1)

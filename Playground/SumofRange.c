@@ -8,7 +8,7 @@ int Sum_Range(int *arr, int size, int left, int right)
     if(size < 2)
         return 0;
 
-    for(int i=left; i <= size - right; i++)
+    for(int i=left; i <= size - right + 1; i++)
     {
         sum += arr[i];
     }

@@ -1,0 +1,27 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLSpecialState</id><coordinates><x>330</x><y>20</y><w>20</w><h>20</h></coordinates><panel_attributes>type=initial
+Power On</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>300</x><y>280</y><w>90</w><h>80</h></coordinates><panel_attributes>bg=green
+type=decision
+read OS_Type</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>300</y><w>150</w><h>40</h></coordinates><panel_attributes>lt=-
+0 = Windows</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>310</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>300</y><w>140</w><h>40</h></coordinates><panel_attributes>lt=-
+1 = Linux</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>310</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>300</x><y>90</y><w>80</w><h>70</h></coordinates><panel_attributes>SHIFT + F1
+bg=green
+type=decision</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLState</id><coordinates><x>440</x><y>400</y><w>120</w><h>40</h></coordinates><panel_attributes>SYS_SHDN = Linux
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLState</id><coordinates><x>110</x><y>400</y><w>130</w><h>40</h></coordinates><panel_attributes>SYS_SHDN = Windows
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>30</x><y>180</y><w>240</w><h>50</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>330</x><y>540</y><w>20</w><h>20</h></coordinates><panel_attributes>type=final</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>430</y><w>180</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;120;160;120;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>430</y><w>180</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>160;120;10;120;10;10</additional_attributes></element><element><id>UMLState</id><coordinates><x>510</x><y>110</y><w>150</w><h>80</h></coordinates><panel_attributes>toggle OS_Type (1 or 0) 
+in memory
+Shift LED:
+Windows = 1 blink
+Linux = 2 blinks
+bg=red</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>110</y><w>170</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+&gt;= 3 seconds</panel_attributes><additional_attributes>150;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>150</y><w>100</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+Not pressed</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>180</y><w>270</w><h>120</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;100;250;100;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>30</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>20</y><w>300</w><h>240</h></coordinates><panel_attributes>
+OS SYS_SHDN for Windows or Linux
+
+--
+Default = WINDOWS (on first program)
+SHIFT =    KPD_KEY2 &amp;&amp; KPD_COM2
+F1       =    KPD_KEY8 &amp;&amp; KPD_COM1 
+OS_Type = 0 (Windows) or 1 (Linux)
+
+SYS_SHDN command is determined by reading the OS_Type variable in NVM. OS_Type can be 0 (Windows) or 1( Linux). Press and hold SHIFT + F1 for 3 seconds or more will toggle OS_Type in memory. The SHIFT LED will blink 1 time indicating Windows and blink 2 times indicating Linux.
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element></diagram>
