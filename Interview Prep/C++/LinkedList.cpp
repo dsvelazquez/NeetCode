@@ -173,29 +173,64 @@ ListNode* middleNode(ListNode* head) {
 // Merge two sorted lists into one list.
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     
-    // create a dummy node to avoid checking if head == nullptr
+    // Create a dummy node
     ListNode* dummy = new ListNode(0);
     ListNode* current = dummy;
 
-    // Begin appending nodes to the dummy node
-    while(list1 != nullptr && list2 != nullptr){
+    while(list1 != nullptr && list2 != nullptr){ //exit loop when one of the lists == null
         if(list1->val < list2->val){
-            current->next = list1; // assign current node to next node in list1
-            list1 = list1->next; // update list to next node
+            current->next = list1;
+            list1 = list1->next;
         }else{
-            current->next = list2; // assign curent node ot next node in list2
-            list2 = list2->next; // update list to next node
+            current->next = list2;
+            list2 = list2->next;
         }
-        current = current->next; // update current ptr to point to next node
+        current = current->next;
     }
 
-    // check the remaining list if it still has nodes
+    // check for remaining nodes 
     if(list1 == nullptr)
-        current->next = list2; // append rest of list2 to sorted list
-    else if (list2 == nullptr)
-        current->next = list1; // append rest of list1 to sorted list
+        current->next = list2;
+    else if(list2 == nullptr)
+        current->next = list1;
 
     return dummy->next; // head
+}
+
+void reorderList(ListNode* head) {
+    // Is there a list?
+    if(head == nullptr || head->next == nullptr)
+        return;
+
+    // Otherwise, use Tortoise-Hare algorightm (fast/slow pointers)
+    ListNode* slowPtr = head;
+    ListNode* fastPtr = head;
+    
+    while(fastPtr->next != nullptr && fastPtr->next->next != nullptr){
+        slowPtr = slowPtr->next;
+        fastPtr = fastPtr->next->next;
+    }
+
+    // Split the list into two halves
+    ListNode* secondHalf = slowPtr->next; // head of second part
+    slowPtr->next = nullptr;
+
+    // Reverse the second half
+    ListNode* p2 = reverseList(secondHalf);
+    ListNode* p1 = head;
+
+    // Zip merge the two halves
+    while(p2 != nullptr){
+        ListNode* temp1 = p1->next;
+        ListNode* temp2 = p2->next;
+
+        p1->next = p2;
+        p2->next = temp1;
+
+        p1 = temp1;
+        p2 = temp2;
+    }
+
 }
 
 int main(){
@@ -237,5 +272,17 @@ int main(){
     ListNode* reversed = nullptr;
     reversed = reverseList(merged);
     printList(reversed);
+
+    ListNode* list1 = nullptr;
+
+    insertAtHead(list1, 1);
+    insertAtTail(list1, 2);
+    insertAtTail(list1, 3);
+    insertAtTail(list1, 4);
+    insertAtTail(list1, 5);
+
+    reorderList(list1);
+
+    printList(list1);
     return 0;
 }
